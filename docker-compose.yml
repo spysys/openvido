@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  video-stream:
+    image: andreyizzheurov/video-stream:0.0.1
+    build: OpenViduBackend
+    ports:
+      - 8080:8080
+    environment:
+      SPRING_DATASOURCE_URL: "jdbc:mysql://db:3306/openviduDB?createDatabaseIfNotExist=true"
+
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: roto
+
+  openvidu:
+    image:  openvidu/openvidu-server-kms:2.14.0
+    ports:
+      - 4443:4443
+      - 80:80
+    environment:
+      - OPENVIDU_SECRET=MY_SECRET
+      - CERTIFICATE_TYPE=selfsigned
+      - DOMAIN_OR_PUBLIC_IP=192.168.1.68

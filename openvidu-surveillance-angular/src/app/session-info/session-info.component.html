@@ -1,0 +1,39 @@
+<!--<div id="session-info" *ngIf="session">-->
+<!--    <div class="card session" id="info" style="width: 22rem">-->
+<!--        <div class="card-body">-->
+<!--            <h3 class="card-title">Session info</h3>-->
+<!--            <p class="card-text">Session id : {{session.sessionId}}</p>-->
+<!--            <p class="card-text">Number of connections : {{session.connections.numberOfElements}}</p>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="miniatures">
+    <div *ngFor="let sub of subscribers" class="stream-container col-md-6 col-xs-6">
+        <user-video [streamManager]="sub" (click)="updateMainStreamManager(sub)"></user-video>
+    </div>
+</div>
+<div>
+
+    <form class="form-group addCameraButton" (submit)="cameraService.publishIpCamera(sessionId,ipURL,cameraName,
+                                             true, true)">
+        <p>
+            <label>Custom camera</label>
+            <label for="ipURL"></label>
+            <input class="form-control" type="text" id="ipURL" name="sessionId" [(ngModel)]="ipURL"
+                                              required>
+        </p>
+        <p>
+            <label>Camera name</label>
+            <label for="cameraName">
+                <input class="form-control" type="text" id="cameraName" name="cameraName" [(ngModel)]="cameraName"
+                       [defaultValue]="cameraName">
+            </label>
+        </p>
+        <p class="text-center">
+            <input class="btn btn-lg btn-success" type="submit" name="commit" value="Add camera">
+        </p>
+    </form>
+
+</div>
+
+

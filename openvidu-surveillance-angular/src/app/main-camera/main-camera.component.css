@@ -1,0 +1,13 @@
+#main-video {
+    margin: 15px auto;
+    float:none;
+}
+
+.ptzControls {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.material-icons {
+    font-size: 50px;
+}
